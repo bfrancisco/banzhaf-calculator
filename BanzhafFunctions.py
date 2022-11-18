@@ -38,10 +38,14 @@ def getVoterStats(quota, weighted_votes, coalitionList):
 
         
 
-def main(quota, weighted_votes):
+def ProcessBanzhaf(quota, weighted_votes):
     coalitionList = getCoalitions(quota, weighted_votes)
     voterList = getVoterStats(quota, weighted_votes, coalitionList)
 
-    for i in range(len(weighted_votes)):
-        print(i+1, ":", voterList[i].getPowerIndex())
-main(int(input()), [int(i) for i in input().split()])
+    # print check
+    # for i in range(len(weighted_votes)):
+    #     print(i+1, ":", voterList[i].getPowerIndex())
+
+    return coalitionList, voterList
+
+#main(int(input()), [int(i) for i in input().split()])
