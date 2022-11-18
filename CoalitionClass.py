@@ -30,3 +30,31 @@ class Coalition:
     def addVoter(self, voter_index):
         self.voter_indeces.append(voter_index)
         self.voter_indeces_set.add(voter_index)
+
+class CoalitionList:
+    def __init__(self):
+        self.coalitionList = []
+        self.hasVetoSet = set() 
+        self.isWinningSet = set()
+    
+    def addCoalition(self, coalition):
+
+        self.coalitionList.append(coalition.voter_indeces)
+        if coalition.hasVeto:
+            self.hasVetoSet.add(coalition.voter_indeces)
+        if coalition.isWin:
+            self.isWinningSet.add(coalition.voter_indeces)
+    
+    def isCoalitionHasVeto(self, voter_indeces_1indexed):
+        voter_indeces_0indexed = [i-1 for i in voter_indeces_1indexed]
+        voter_indeces_0indexed.sort()
+        if voter_indeces_0indexed in self.hasVetoSet:
+            return True
+        return False
+
+    def isCoalitionWinning(self, voter_indeces_1indexed):
+        voter_indeces_0indexed = [i-1 for i in voter_indeces_1indexed]
+        voter_indeces_0indexed.sort()
+        if voter_indeces_0indexed in self.isWinningSet:
+            return True
+        return False

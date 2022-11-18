@@ -1,8 +1,9 @@
-from CoalitionClass import Coalition
+from CoalitionClass import *
 
 def getWinningCoalitions(quota, weighted_votes):
+    "returns an instance of CoalitionClass"
     nvoters = len(weighted_votes)
-    win_coalitions = []
+    coalitionList = CoalitionList()
     for subset in range(1, 2**nvoters):
         cur_coalition = Coalition(weighted_votes, quota)
         for voter_index in range(nvoters):
@@ -10,16 +11,13 @@ def getWinningCoalitions(quota, weighted_votes):
                 cur_coalition.addVoter(voter_index)
         
         cur_coalition.ProcessCoalition()
-
-        if cur_coalition.isWin:
-            win_coalitions.append(cur_coalition)
+        coalitionList.addCoalition(cur_coalition)
         
-    return win_coalitions
+    return coalitionList
 
 
 def main(quota, weighted_votes):
-    winning_coalitions = getWinningCoalitions(quota, weighted_votes)
-    for c in winning_coalitions:
-        print(c.voter_indeces)
+    coalitionList = getWinningCoalitions(quota, weighted_votes)
+    # create voter class
 
 main(int(input()), [int(i) for i in input().split()])
