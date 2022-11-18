@@ -39,11 +39,11 @@ class CoalitionList:
     
     def addCoalition(self, coalition):
 
-        self.coalitionList.append(coalition.voter_indeces)
+        self.coalitionList.append(coalition)
         if coalition.hasVeto:
-            self.hasVetoSet.add(coalition.voter_indeces)
+            self.hasVetoSet.add(tuple(coalition.voter_indeces))
         if coalition.isWin:
-            self.isWinningSet.add(coalition.voter_indeces)
+            self.isWinningSet.add(tuple(coalition.voter_indeces))
     
     def isCoalitionHasVeto(self, voter_indeces_1indexed):
         voter_indeces_0indexed = [i-1 for i in voter_indeces_1indexed]
@@ -58,3 +58,30 @@ class CoalitionList:
         if voter_indeces_0indexed in self.isWinningSet:
             return True
         return False
+    
+class Voter:
+    def __init__(self):
+        self.dictator = False
+        self.banzhaf_power = 0
+        self.power_index = None
+    
+    def isCritical(self):
+        return True if self.banzhaf_power > 0 else False
+
+    def isDictator(self):
+        return self.dictator
+
+    def isDummy(self):
+        return True if self.banzhaf_power == 0 else False
+    
+    def incrementBanzhafPower(self):
+        self.banzhaf_power += 1
+
+    def getBanzhafPower(self):
+        return self.banzhaf_power
+    
+    def calculatePowerIndex(self, sum):
+        self.power_index = self.banzhaf_power / sum
+    
+    def getPowerIndex(self):
+        return self.power_index
