@@ -64,6 +64,7 @@ class Voter:
         self.dictator = False
         self.banzhaf_power = 0
         self.power_index = None
+        self.winning_coalitions = []
     
     def isCritical(self):
         return True if self.banzhaf_power > 0 else False
@@ -85,3 +86,9 @@ class Voter:
     
     def getPowerIndex(self):
         return self.power_index
+    
+    def addWinningCoalition(self, coalition):
+        self.winning_coalitions.append(coalition)
+    
+    def getWinningCoalitions(self):
+        return self.winning_coalitions

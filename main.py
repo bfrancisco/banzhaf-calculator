@@ -11,10 +11,42 @@ if __name__ == '__main__':
     st.caption("© Copyright 2022 by James Bryan Francisco - ADMU BS CS")
 
     quota = st.number_input("Quota", min_value = 1)
-    weighted_votes_string = st.text_input("Weighted votes", placeholder = "10 15 12 7")
+    weighted_votes_string = st.text_input("Weighted Votes", placeholder = "10 15 12 7")
     weighted_votes = [int(i) for i in weighted_votes_string.split()]
 
     coalitionList, voterList = BanzhafFunctions.ProcessBanzhaf(quota, weighted_votes)
-
+    
+    sub = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
     for i in range(len(weighted_votes)):
-        st.write("Voter", i+1, ":", voterList[i].getPowerIndex())
+        st.subheader("Voter " + str(i+1))
+        st.write("Weight of vote:", weighted_votes[i])
+        st.write("Banzhaf Power Index:", voterList[i].getPowerIndex())
+        st.write("Banzhaf Power:", voterList[i].getBanzhafPower())
+
+        if voterList[i].isCritical():
+            if voterList[i].isDictator():
+                st.write("Voter", i+1, "is a dictator.")
+            else:
+                st.write("Voter", i+1, "is a critical voter.")
+            winning_coalitions_strings = []
+            for win_coalition in voterList[i].getWinningCoalitions():
+                voter_indeces_string = '( '
+                for index in win_coalition.voter_indeces:
+                    
+                    voter_indeces_string += 'V' + str(index+1) + ', '
+                
+                voter_indeces_string = voter_indeces_string[:-2] + ' )'
+                voter_indeces_string = voter_indeces_string.translate(sub)
+                winning_coalitions_strings.append(voter_indeces_string)
+
+            coalitions_out = ""
+            for coalition in winning_coalitions_strings:
+                coalitions_out += coalition + ', '
+
+            st.write("Critical Coalitions:", coalitions_out[:-2])
+            
+        elif voterList[i].isDummy():
+            st.write("Voter", i+1, "is a dummy voter.")
+        
+
+        

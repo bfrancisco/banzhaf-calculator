@@ -26,6 +26,7 @@ def getVoterStats(quota, weighted_votes, coalitionList):
             if coalition.isWin and voter_index in coalition.voter_indeces_set:
                 if coalition.total_votes - weighted_votes[voter_index] < quota:
                     voterList[voter_index].incrementBanzhafPower()
+                    voterList[voter_index].addWinningCoalition(coalition)
     
     # calculate banzhaf power indeces
     sumBanzhafPower = 0
