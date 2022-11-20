@@ -10,9 +10,10 @@ if __name__ == '__main__':
     st.title("Banzhaf Power Index Calculator")
     st.caption("© Copyright 2022 by James Bryan Francisco - ADMU BS CS")
 
-    quota = st.number_input("Quota", min_value = 1)
     weighted_votes_string = st.text_input("Weighted Votes", placeholder = "10 15 12 7")
     weighted_votes = [int(i) for i in weighted_votes_string.split()]
+    quota = st.number_input("Quota", min_value = 1, max_value = sum(weighted_votes))
+    
 
     coalitionList, voterList = BanzhafFunctions.ProcessBanzhaf(quota, weighted_votes)
     
