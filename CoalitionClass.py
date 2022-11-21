@@ -70,7 +70,7 @@ class Voter:
         return True if self.banzhaf_power > 0 else False
 
     def isDictator(self):
-        return self.dictator
+        return True if self.banzhaf_power == 1 else False
 
     def isDummy(self):
         return True if self.banzhaf_power == 0 else False
