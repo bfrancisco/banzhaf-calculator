@@ -67,13 +67,13 @@ class Voter:
         self.winning_coalitions = []
     
     def isCritical(self):
-        return True if self.banzhaf_power > 0 else False
+        return True if self.power_index > 0 else False
 
     def isDictator(self):
-        return True if self.banzhaf_power == 1 else False
+        return True if self.power_index == 1 else False
 
     def isDummy(self):
-        return True if self.banzhaf_power == 0 else False
+        return True if self.power_index == 0 else False
     
     def incrementBanzhafPower(self):
         self.banzhaf_power += 1
