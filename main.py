@@ -17,7 +17,7 @@ if __name__ == '__main__':
     bttn = st.button("Calculate results")
     if bttn:
         coalitionList, voterList = BanzhafFunctions.ProcessBanzhaf(quota, weighted_votes)
-        for coalition in coalitionList:
+        for coalition in coalitionList.coalitionList:
             st.write(''.join(coalition) + coalition.isWin)
         sub = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
         for i in range(len(weighted_votes)):
