@@ -18,7 +18,7 @@ if __name__ == '__main__':
     if bttn:
         coalitionList, voterList = BanzhafFunctions.ProcessBanzhaf(quota, weighted_votes)
         for coalition in coalitionList.coalitionList:
-            out = ''.join(coalition) + " "
+            out = str(coalition) + " "
             if coalition.isWin:
                 out += "is Winning and "
             else:
