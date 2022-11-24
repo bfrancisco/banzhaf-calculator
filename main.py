@@ -19,8 +19,7 @@ if __name__ == '__main__':
         coalitionList, voterList = BanzhafFunctions.ProcessBanzhaf(quota, weighted_votes)
         sub = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
         st.subheader("List of Coalitions")
-        srted_coalitionList = sorted(coalitionList.coalitionList)
-        for coalition in srted_coalitionList:
+        for coalition in coalitionList.coalitionList:
             lst_coalition = []
             for index in coalition.voter_indeces:
                 lst_coalition.append("V"+str(index+1))
