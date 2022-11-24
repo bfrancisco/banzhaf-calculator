@@ -18,7 +18,16 @@ if __name__ == '__main__':
     if bttn:
         coalitionList, voterList = BanzhafFunctions.ProcessBanzhaf(quota, weighted_votes)
         for coalition in coalitionList.coalitionList:
-            st.write(''.join(coalition) + coalition.isWin)
+            out = ''.join(coalition) + " "
+            if coalition.isWin:
+                out += "is Winning and "
+            else:
+                out += "is Losing and "
+            if coalition.hasVeto:
+                out += "has Veto Power"
+            else:
+                out += "don't have Veto Power"
+            st.write(out)
         sub = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
         for i in range(len(weighted_votes)):
             st.subheader("Voter " + str(i+1))
