@@ -26,7 +26,7 @@ if __name__ == '__main__':
             lst_coalition_string = "".join(lst_coalition)
             lst_coalition_string = lst_coalition_string.translate(sub)
             st.subheader("List of Coalitions")
-            out = "(" + lst_coalition + ")" + " "
+            out = "(" + lst_coalition_string + ")" + " "
             if coalition.isWin:
                 out += "is Winning and "
             else:
