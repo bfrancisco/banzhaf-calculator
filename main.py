@@ -17,8 +17,16 @@ if __name__ == '__main__':
     bttn = st.button("Calculate results")
     if bttn:
         coalitionList, voterList = BanzhafFunctions.ProcessBanzhaf(quota, weighted_votes)
+        sub = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
         for coalition in coalitionList.coalitionList:
-            out = str(coalition) + " "
+
+            lst_coalition = []
+            for index in coalition.voter_indeces:
+                lst_coalition.append("V"+str(index+1))
+            lst_coalition_string = "".join(lst_coalition)
+            lst_coalition_string = lst_coalition_string.translate(sub)
+            st.subheader("List of Coalitions")
+            out = "(" + lst_coalition + ")" + " "
             if coalition.isWin:
                 out += "is Winning and "
             else:
@@ -28,7 +36,7 @@ if __name__ == '__main__':
             else:
                 out += "don't have Veto Power"
             st.write(out)
-        sub = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+        
         for i in range(len(weighted_votes)):
             st.subheader("Voter " + str(i+1))
             st.write("Weight of vote:", weighted_votes[i])
