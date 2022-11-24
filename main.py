@@ -34,7 +34,7 @@ if __name__ == '__main__':
             if coalition.hasVeto:
                 out += "has Veto Power"
             else:
-                out += "don't have Veto Power"
+                out += "doesn't have Veto Power"
             st.write(out)
         
         for i in range(len(weighted_votes)):
